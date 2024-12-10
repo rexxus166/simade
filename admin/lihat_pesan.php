@@ -30,41 +30,78 @@ if (isset($_GET['id'])) {
     <style>
         /* Styling untuk halaman detail pesan */
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Poppins', sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f4f6f9;
+            background-color: #1b1b1b;
+            color: #ffffff;
         }
         .navbar {
-            background-color: #00796b;
+            background-color: rgba(0, 0, 0, 0.8);
             padding: 10px 20px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            color: white;
+            color: #ffffff;
         }
         .navbar a {
-            color: white;
+            color: #ffffff;
             text-decoration: none;
             margin-left: 15px;
             font-weight: bold;
+            transition: color 0.3s;
         }
+
         .navbar a:hover {
-            text-decoration: underline;
+            color: #f0c674;
         }
+
         .container {
             padding: 20px;
             max-width: 800px;
             margin: 20px auto;
-            background-color: #ffffff;
+            background-color: black;
             border-radius: 12px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
-        h2 {
-            color: #00796b;
+        h1, h2 {
+            color: #f0c674;
+            margin-bottom: 20px;
+        }
+        form label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #dcdcdc;
+        }
+        form input, form textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #b0bec5;
+            border-radius: 8px;
+            box-sizing: border-box;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #f0c674;
+            border: none;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #004d40;
+        }
+        .pesan {
+            margin-top: 20px;
+            font-size: 14px;
+            color: #f0c674;
         }
         p {
-            color: #333;
+            color: #dddd;
             font-size: 16px;
         }
         .message-content {
