@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -24,22 +28,29 @@
   <body>
    
     <!-- Navbar start -->
-<nav class="navbar">
-  <a href="#home" class="navbar-logo">SIMADE<span>POLINDRA</span>.</a>
+    <nav class="navbar">
+      <a href="" class="navbar-logo">SIMADE<span>POLINDRA</span>.</a>
 
-  <div class="navbar-nav">
-    <a href="#home">Home</a>
-    <a href="#about">Tentang Kami</a>
-    <a href="#artikel">Artikel</a>
-    <a href="#contact">Pesan</a>
-  </div>
+      <div class="navbar-nav">
+        <a href="#home">Home</a>
+        <a href="#about">Tentang Kami</a>
+        <a href="#artikel">Artikel</a>
+        <a href="#contact">Pesan</a>
+      </div>
 
-  <div class="navbar-extra">
-    <a href="login.php" class="login-btn">Login</a>
-    <a href="#" id="hamburger-menu"><i data-feather="menu"></i></a>
-  </div>
-</nav>
-<!-- Navbar end -->
+      <div class="navbar-extra">
+        <?php if (isset($_SESSION['username'])): ?>
+          <!-- Jika sudah login, tampilkan tombol Logout -->
+          <a href="logout.php" class="login-btn">Logout</a>
+        <?php else: ?>
+          <!-- Jika belum login, tampilkan tombol Login -->
+          <a href="login.php" class="login-btn">Login</a>
+        <?php endif; ?>
+        <a href="#" id="hamburger-menu"><i data-feather="menu"></i></a>
+      </div>
+    </nav>
+
+    <!-- Navbar end -->
 
 
     <!-- Hero Section start -->

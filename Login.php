@@ -7,26 +7,24 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $password = $_POST['password'];
 
     // Menulis query untuk mencari username
-    $sql = "SELECT * FROM admin WHERE username = '$username'";
-    $result = $conn->query($sql);  // Menjalankan query
-
-    // Mengecek apakah query berhasil dieksekusi
-    if (!$result) {
-        die("Query gagal: " . $conn->error);  // Menampilkan error jika query gagal
-    }
+    $sql = "SELECT * FROM users WHERE username = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("s", $username);  // Bind parameter
+    $stmt->execute();
+    $result = $stmt->get_result();  // Menjalankan query dan mendapatkan hasil
 
     // Mengecek apakah ada hasil untuk username yang dicari
     if ($result->num_rows > 0) {
         $user = $result->fetch_assoc();  // Ambil data pengguna
         if (password_verify($password, $user['password'])) {  // Verifikasi password
             $_SESSION['username'] = $username;  // Simpan username dalam session
-            header("Location: admin_dashboard.php");  // Redirect ke halaman dashboard admin
+            header("Location: index.php");  // Redirect ke halaman index setelah login
             exit();
         } else {
-            echo "<p class='error'>Password salah!</p>";  // Password salah
+            $error_message = "Password salah!";
         }
     } else {
-        echo "<p class='error'>Username tidak ditemukan!</p>";  // Username tidak ditemukan
+        $error_message = "Username tidak ditemukan!";
     }
 }
 ?>
@@ -220,7 +218,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 <div class="container">
     <h2>Login Akun</h2>
-    <form method="POST" action="index.php">
+    <?php if (isset($error_message)) { echo "<p class='error'>$error_message</p>"; } ?>
+    <form method="POST" action="login.php">
         <label for="username">Username:</label>
         <input type="text" name="username" id="username" required>
 
