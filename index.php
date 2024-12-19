@@ -1,5 +1,10 @@
 <?php
 session_start();
+// Periksa apakah user sudah login, jika belum redirect ke halaman login
+if (!isset($_SESSION['username'])) {
+    header("Location: login.php");
+    exit();
+}
 ?>
 
 <!DOCTYPE html>
